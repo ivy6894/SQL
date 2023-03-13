@@ -1,0 +1,30 @@
+CREATE TABLE Office_Store (id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER, color TEXT, price INTEGER);
+
+INSERT INTO Office_Store VALUES
+(1,"Stapler",23,"black", 5),
+(2,"Scanner", 15, "grey", 40),
+(3,"Lamp", 20, "black", 20),
+(4,"Printer", 15, "white",300),
+(5,"Keyboard", 30,"black", 35),
+(6,"Monitor", 60,"grey", 120),
+(7,"Monitor", 20, "black", 125),
+(8,"Ink Pen",100,"blue", 1),
+(9,"Sharpie", 73,"red", 3),
+(10,"Card Reader", 27, "black", 85),
+(11,"Mouse", 50, "black", 15),
+(12,"Phone", 27, "white", 25),
+(13,"Tape Dispenser", 32,"grey", 10),
+(14, "Stamp", 12, "black", 5),
+(15, "Drawer", 19, "white", 100);
+
+SELECT * FROM Office_Store WHERE price > 1 ORDER BY price desc;
+SELECT SUM(quantity) FROM Office_Store WHERE item = "Monitor"
+
+--display the database ordered by price. 
+SELECT * FROM store
+ORDER BY price desc; 
+
+--display the total amount of "Monitors" in stock.
+SELECT SUM(quantity) 
+FROM Office_Store
+WHERE item = "Monitor";
