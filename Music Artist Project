@@ -1,0 +1,47 @@
+/* Create table about the people and what they do here */
+
+/* Artist Table*/
+
+CREATE TABLE artists (id INTEGER PRIMARY KEY AUTOINCREMENT, artist TEXT, hometown TEXT, song TEXT, debut INTEGER);
+
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Beyonce", "Houston TX", "CUFF IT", 10);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Megan Thee Stallion", "Houston TX", "Savage", 1);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Doja Cat", "Los Angeles CA", "Kiss me More", 3);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Ariana Grande", "Boca Raton FL", "God is a Woman", 8);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Summer Walker", "Atlanta GA", "No Love", 13);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("SZA", "ST Louis MO", "Good Days", 9);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Chloe Bailey", "Atlanta GA", "Have Mercy", 28);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Rihanna", "Barbados", "Kiss it Better", 62);
+INSERT INTO artists (artist, hometown, song, debut) VALUES ("Jhene Aiko", "Los Angeles CA", "The Worst", 43);
+INSERT INTO artists ( artist, hometown, song, debut) VALUES ("Nicki Minaj", "Trinidad", "Super Bass", 3);
+
+
+/*Grammy Table*/
+
+CREATE TABLE grammys (id INTEGER PRIMARY KEY, artist TEXT, category TEXT, grammys INTEGER, collab_id INTEGER);
+
+INSERT INTO grammys (artist, category, grammys, collab_id) VALUES ("Beyonce", "R&B song", 32, 2);
+INSERT INTO grammys (artist, category, grammys, collab_id) VALUES ("Megan Thee Stallion", "Best Rap Song", 3, 1);
+INSERT INTO grammys (artist, category, grammys, collab_id) VALUES ("Doja Cat", "Best Pop Solo Performance", 1, 4);
+INSERT INTO grammys (artist, category, grammys, collab_id) VALUES ("Ariana Grande", "Best Pop Vocal Album", 2, 3);
+INSERT INTO grammys (artist, collab_id) VALUES ("Summer Walker", 6);
+INSERT INTO grammys (artist, category, grammys, collab_id) VALUES ("SZA", "Best Pop Duo", 1, 5);
+INSERT INTO grammys (artist) VALUES ("Chloe Bailey");
+INSERT INTO grammys (artist, category, grammys, collab_id) VALUES ("Rihanna", "Best Rap/Sung Performance", 9, 10);
+INSERT INTO grammys (artist) VALUES ("Jhene Aiko");
+INSERT INTO grammys (artist, collab_id) VALUES ("Nicki Minaj", 8 );
+
+/*Present artists by most to least grammy wins*/
+
+SELECT a.artist, a.hometown, a.song, g.category, g.grammys, g.collab_id
+FROM artists a
+JOIN grammys g
+ON a.id = g.id
+ORDER BY grammys desc;
+
+/* Artist Collaborations*/
+
+SELECT a.artist, g.artist
+FROM artists a
+LEFT OUTER JOIN grammys g
+ON a.id = g.collab_id;
