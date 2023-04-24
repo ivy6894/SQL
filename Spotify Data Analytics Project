@@ -1,8 +1,54 @@
 /* In this Spotify Analytics project, I will be creating my own Sample Questions/Oueries for a Spotify Database, and writing out the queries that answer those questions*/
 
 
-#1. What is the most Popular song?
+#1. What are the most Popular songs(Highest Popularity)?
+SELECT track_name, popularity
+FROM Spotifydata
+Order by popularity desc
+
 #2. Which artist has the longest song?
+SELECT artist_name, duration_ms AS duration
+FROM Spotifydata
+Order By duration desc
+
 #3. How many 3-4 minutes songs are there?
+SELECT artist_name, duration_ms AS duration
+FROM Spotifydata
+WHERE duration > 180000 AND duration < 240000
+ORDER BY duration 
+
 #4. How many songs in the list are by Doja Cat?
-#5. 
+Select artist_name, track_name
+FROM Spotifydata
+WHERE artist_name = 'Doja Cat'
+
+#5. What is the most popular Ariana Grande song?
+Select artist_name, track_name, popularity
+FROM Spotifydata
+WHERE artist_name = 'Ariana Grande'
+ORDER BY popularity desc
+LIMIT 1
+
+
+
+/*Spotify Project Example Table(Pre-made project table provided by Program)*/
+
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness decimal(8,7) NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL )
