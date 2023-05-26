@@ -1,0 +1,59 @@
+In this Final Project we will be using a database containing 11 tables and creating questions based on the tables and the SQL queries that answers those questions.
+
+1. Show the Customers (first name and last name), their customer ID and country of those who do not live in the USA.
+SELECT firstname, lastname, customerid, country
+FROM chinook.customers
+WHERE country != 'USA';
+
+2. Only show the customers (first name and last name), their customer ID and country of those who live in the US or the UK
+SELECT firstname, lastname, customerid, country
+FROM chinook.customers
+WHERE country LIKE 'U%';
+
+3. Show all the customerid and full name of customers helped by Jane Peacock from the employees table.
+SELECT c.customerid, c.firstname, c.lastname, c.supportrepid, e.firstname, e.lastname, e.employeeid
+FROM chinook.customers c
+JOIN chinook.employees e
+ON c.supportrepid = e.employeeid
+WHERE e.employeeid = 3;
+
+4. Show all the employees (first name, last name, title, employee id) who are managers.
+SELECT firstname, lastname, title, employeeid
+FROM chinook.employees
+WHERE title LIKE '%Manager';
+
+5. How many invoices are in the invoices table?
+SELECT COUNT(invoiceid)
+FROM chinook.invoices;
+
+6. Which Band/Artist has the most album titles?
+SELECT aa.Name, COUNT(a.Title) AS Album_Total
+FROM chinook.albums a
+JOIN chinook.artists aa
+ON a.ArtistId = aa.ArtistId
+GROUP BY aa.Name
+ORDER BY COUNT(a.Title) desc
+LIMIT 1;
+
+7. Which song is the longest?
+SELECT Name, Milliseconds
+FROM chinook.tracks
+Order by Milliseconds desc 
+LIMIT 1;
+
+8. Which invoices in the invoice table have both a state and postal code?
+SELECT *
+FROM chinook.invoices
+WHERE BillingState IS NOT NULL
+AND BillingPostalCode IS NOT NULL;
+
+9. Show the employees born in 1970 or after
+SELECT *
+FROM chinook.employees
+WHERE BirthDate > '1970%'
+ORDER BY BirthDate;
+
+10. What were the total sales in 2009?
+SELECT SUM(Total)
+FROM chinook.Invoices
+WHERE InvoiceDate BETWEEN '2012-01-01' AND '2012-12-31';
